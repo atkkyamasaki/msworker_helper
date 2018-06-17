@@ -1,0 +1,53 @@
+{
+  "name": "MsWorkHelper",
+  "author": "Takefumi Yamasaki",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "description": "Helper for Microsoft Worker",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://azuresupportcenter.msftcloudes.com/resourceExplorer*",
+        "https://jarvis-west.dc.ad.msft.net/*"
+      ],
+      "js": [
+        "vendor/jquery/jquery-3.2.1.min.js",
+        "vendor/judge_support_browser.js",
+        "js/config.js",
+        "js/asc_resource_providers.js"
+        // "js/edit_ticket.js"
+      ],
+      "css": [
+        "css/asc_resource_providers.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "browser_action": {
+    "default_icon": {
+      "19": "image/ms_y_logo_19.png",
+      "38": "image/ms_y_logo_38.png"
+    },
+    "default_title": "MS Work Helper",
+    "default_popup": "html/popup.html"
+  },
+  // "page_action": {
+  //   "default_icon": {
+  //     "19": "image/ms_y_logo_19.png",
+  //     "38": "image/ms_y_logo_38.png"
+  //   },
+  //   "default_title": "MS Custom UI"
+  // },
+  // "background": {
+  //   "scripts": ["js/event.js"],
+  //   "persistent": false
+  // },
+  "icons" : {
+    "16": "image/ms_y_logo_16.png",
+    "48": "image/ms_y_logo_48.png",
+    "128": "image/ms_y_logo_128.png"
+  }
+  // "permissions": [
+  //   "storage"
+  // ]
+}

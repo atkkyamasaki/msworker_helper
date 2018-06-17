@@ -1,0 +1,202 @@
+@import "main";
+
+
+
+
+/* 付箋用 */
+.post_it {
+    font-family: $font_family;
+	position: fixed;
+    right: 0px;
+    font-size: 10px;
+    color: white;
+    width: auto;
+    border-radius: 5px 0 0 5px;
+    padding: 10px 0 10px 10px;	
+    cursor: pointer;
+	// -webkit-transition-property: width;
+	// -webkit-transition-duration: 0.5s;
+	// -webkit-transition-timing-function: ease;
+	// -webkit-transition-delay: 0.3s;
+ 
+    input[type="text"] {
+        margin: 0;
+        padding: 0;
+        font-size: 10px;
+        width: auto;
+    }
+    .post_it_item {
+    	padding: 1px 2px;
+        margin: 0 2px;
+        
+        input {
+            color: black;
+        }
+
+        .my_clip_board {
+            padding: 4px;
+
+            &:hover {
+                color: black;
+            }
+        }
+
+    }
+
+    #container_element {
+        i {
+            &:hover {
+                color: black;
+            }
+        }
+    }
+}
+
+.post_it_close {
+	width: 15px !important;
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+
+    &:hover {
+    	width: 25px !important;
+    }
+}
+
+#summary_note {
+    top: 30%;
+    height: 100px;
+    background-color: rgba(2, 117, 216, 0.7);
+    border-left: 8px solid rgb(2, 117, 216);
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#customer_info_note {
+    top: calc(30% + 128px);
+    background-color: rgba(255,153,204,0.7);
+    border-left: 8px solid rgb(255,153,204);
+}
+
+.conf_import,
+.conf_export {
+    position: absolute;
+    padding: 4px;
+
+    &:hover {
+        color: black;
+    }
+}
+
+.conf_import {
+    right: 56px;
+}
+
+.conf_export {
+    right: 24px;
+}
+
+
+/* Modal window */
+.container_import_field {
+    top: 400px;
+    left: 50%;
+    margin: -150px 0 0 -200px;
+    padding: 16px;
+    width: 400px;
+    height: 200px;
+    text-align: center;
+    display: none;
+    background: #fff;
+    border: 1px solid black;
+    position: absolute;
+    z-index: 10;
+
+	> p {
+		margin: 8px;
+	}
+
+	> p:first-child {
+		border-bottom: 1px solid #0275d8;
+	}
+
+    .select_import_field_btn {
+   	    background-color: #0275d8;
+	    color: white;
+	    box-shadow: rgba(0, 0, 0, 0.4) 2px 2px;
+	    padding: 6px;
+	    margin: 0 8px;
+	    border-radius: 4px;
+
+		&:hover {
+			opacity: 0.8;
+		}
+    }
+}
+
+#container_modal_overlay{
+	z-index: 1;
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 120%;
+	background-color: rgba(0,0,0,0.75);
+}
+
+
+
+
+
+/* 全画面に表示する Loading 画面*/
+.all_loading{
+    position:fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    background:rgba(0,0,0,.5);
+    z-index: 99999;
+  }
+  
+  .all_loading::before{
+    content:"";
+    display:block;
+    position:fixed;
+    left:50%;
+    top:50%;
+    width:50px;
+    height:50px;
+    border-radius:5px;
+    margin-top:-15px;
+    margin-left:-15px;
+    background:white;
+  }
+  
+  .all_loading::after{
+    content:"";
+    display:block;
+    position:fixed;
+    left:50%;
+    top:50%;
+    width:32px;
+    height:32px;
+    border-radius:20px;
+    margin-top:-10px;
+    margin-left:-10px;
+    border:4px solid #60ABB9;
+    border-right:4px solid white;
+    animation: rotate 1s infinite linear;
+  }
+  
+  @keyframes rotate {
+    0%    { transform: rotate(0deg); }
+    100%  { transform: rotate(360deg); }
+  }
+
+  .hide {
+      display: none;
+  }
+  

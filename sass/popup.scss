@@ -1,0 +1,43 @@
+html {
+	background-color: gray;
+	width: 400px;
+	color: white;
+}
+
+.page_title {
+	text-shadow: 2px 2px black;
+}
+
+.checkbox_parts {
+	padding: 4px;
+	cursor: pointer;
+
+	input {
+		margin: 0 10px 0 0;
+		vertical-align: middle;
+	}
+}
+
+.page_subtitle {
+    background: black;
+    position: relative;
+    left: 24px;
+    display: inline-block;
+    padding: 4px 8px;
+    margin: 0px 0px 16px 0px;
+    border-radius: 8px;
+    z-index: 100;
+}
+
+.parts_container {
+    width: 350px;
+	position: relative;
+    top: -32px;
+    left: 10px;
+    padding: 16px 8px 8px 8px;
+    z-index: 80;
+    background: white;
+    color: black;
+    box-shadow: 2px 2px black;
+}
+

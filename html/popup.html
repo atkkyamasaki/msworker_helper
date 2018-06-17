@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>FortiWork Helper</title>
+    <link rel="stylesheet" href="../css/popup.css">
+</head>
+<body>
+	<h1 class="page_title">FortiWork Helper</h1>
+
+	<div id="edit_ticket_container">
+		<h2 class="page_subtitle">Ticket編集ページ</h2>
+		<div class="parts_container">
+			<div class="checkbox_parts"><label><input type="checkbox" name="messageColor" id="messageColor">メッセージ欄への色付け</label></div>
+			<div class="checkbox_parts"><label><input type="checkbox" name="productSummary" id="productSummary">製品サマリー表示</label></div>
+			<div class="checkbox_parts"><label><input type="checkbox" name="customerSummary" id="customerSummary">顧客サマリー表示</label></div>
+			<div class="checkbox_parts"><label><input type="checkbox" name="duration" id="duration">ページ更新時間の表示</label></div>
+			<div class="checkbox_parts"><label><input type="checkbox" name="durationFooter" id="durationFooter">ページ更新時間の表示(画面右下)</label></div>
+ 		</div>
+	</div>
+
+	<div id="my_unclosed_ticket_container">
+		<h2 class="page_subtitle">My Unclosed Ticketページ</h2>
+		<div class="parts_container">
+			<div class="checkbox_parts"><label><input type="checkbox" name="unclosedFilter" id="unclosedFilter">Filter表示</label></div>
+ 		</div>
+	</div>
+
+	<div id="closed_ticket_container">
+		<h2 class="page_subtitle">過去Ticket参照用</h2>
+		<div class="parts_container">
+			<div class="checkbox_parts"><label><input type="checkbox" name="closedMessageColor" id="closedMessageColor">メッセージ欄への色付け</label></div>
+			<div class="checkbox_parts"><label><input type="checkbox" name="closedSummary" id="closedSummary">サマリー表示</label></div>
+ 		</div>
+	</div>
+
+	<div id="mantis_container">
+		<h2 class="page_subtitle">Mantis用</h2>
+		<div class="parts_container">
+			<div class="checkbox_parts"><label><input type="checkbox" name="mantisPlugin" id="mantisPlugin">サマリー表示</label></div>
+ 		</div>
+	</div>
+
+    <script type="text/javascript" src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../js/popup.js"></script>
+</body>
+</html>
