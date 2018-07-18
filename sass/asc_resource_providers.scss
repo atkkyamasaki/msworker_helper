@@ -79,6 +79,7 @@
     border-left: 8px solid rgb(255,153,204);
 }
 
+.conf_update_field,
 .conf_import,
 .conf_export {
     position: absolute;
@@ -89,12 +90,64 @@
     }
 }
 
+.conf_update_field {
+    right: 78px;
+}
+
 .conf_import {
-    right: 56px;
+    right: 44px;
 }
 
 .conf_export {
-    right: 24px;
+    right: 12px;
+}
+
+
+/* Copy Update Btn */
+
+.container_copy_update {
+    font-family: $font_family;
+	position: fixed;
+    right: 0px;
+    font-size: 14px;
+    color: white;
+    width: auto;
+    background-color: lightgray;
+    cursor: pointer;
+    top: 90%;
+
+}
+
+
+@keyframes bg-color {
+    0% { background: white; }
+    100% { background: lightskyblue; }
+  }
+
+.bg_highlighter {
+    background-color: lightskyblue;
+    border-radius: 4px;
+    // padding: 4px;
+    -webkit-animation:bg-color 1s ease-in-out infinite alternate;
+
+}
+
+/* Tile Marker Icon */
+#resourceContent > div > div > loading-area > div > ng-transclude > layout-handler > div > div > loading-area > div > ng-transclude > layout-handler > div > div.asc-tilegrid-flow > ul > ng-transclude {
+    > layout-handler:first-child {
+        > div > i.tile_marker_icon {
+            display: inline-block !important;
+            font-size: 24px;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+}
+
+.valid_green {
+    color: limegreen;
 }
 
 
@@ -145,8 +198,6 @@
 	height: 120%;
 	background-color: rgba(0,0,0,0.75);
 }
-
-
 
 
 
