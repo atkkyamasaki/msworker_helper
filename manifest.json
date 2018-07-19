@@ -29,9 +29,8 @@
       "js": [
         "vendor/jquery/jquery-3.2.1.min.js",
         "vendor/judge_support_browser.js",
-        "js/config.js",
-        "js/azure_portal.js"
-        // "js/azure_portal.min.js"
+        // "js/azure_portal.js"
+        "js/azure_portal.min.js"
       ],
       "css": [
         "css/azure_portal.css"
