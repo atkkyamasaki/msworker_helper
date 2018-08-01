@@ -133,16 +133,12 @@
 }
 
 /* Tile Marker Icon */
-#resourceContent > div > div > loading-area > div > ng-transclude > layout-handler > div > div > loading-area > div > ng-transclude > layout-handler > div > div.asc-tilegrid-flow > ul > ng-transclude {
-    > layout-handler:first-child {
-        > div > i.tile_marker_icon {
-            display: inline-block !important;
-            font-size: 24px;
+#resourceContent > details-area > div > loading-area > div > ng-transclude > layout-handler > layout-handler > div > div > loading-area > div > ng-transclude > layout-handler > div > div.asc-tilegrid-flow > ul > ng-transclude layout-handler:first-child > div > i.tile_marker_icon {
+    display: inline-block !important;
+    font-size: 24px;
 
-            &:hover {
-                opacity: 0.8;
-            }
-        }
+    &:hover {
+        opacity: 0.8;
     }
 }
 

@@ -324,10 +324,68 @@ function _ascResourceWather(){
 				}, 2000);
 			break;
 
+			case 'Microsoft.ClassicCompute/virtualMachines':
+				var vmNamevalue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(1) > td > span > span");
+				var vmNamevalueText = vmNamevalue.text();
+				var vmResourceGroup = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(3) > td > span > span");
+				var vmResourceGroupText = vmResourceGroup.text();
+				var vmDeploymentId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(6) > td > span > span");
+				var vmDeploymentIdText = vmDeploymentId.text();
+				var vmRegion = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(4) > td > span > span");
+				var vmRegionText = vmRegion.text();
+
+				var targetHighlighter= [
+					vmNamevalue,
+					vmResourceGroup,
+					vmDeploymentId,
+					vmRegion,
+				];
+
+				updateCustomerInfoHash = {
+					"vm_name": vmNamevalueText,
+					"vm_resource-group": vmResourceGroupText,
+					"vm_deployment-id": vmDeploymentIdText,
+					"vm_region": vmRegionText,
+				};
+
+				$.each(targetHighlighter, function(index, value) {
+					$(value).addClass('bg_highlighter');
+				});
+
+				setTimeout(function(){
+					_clearHighlighter(targetHighlighter);
+				}, 2000);
+			break;
+
 			case 'Microsoft.Network/virtualNetworks':
+				var vnetNamevalue = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
+				var vnetNamevalueText = vnetNamevalue.text();
+				var vnetInternalVnetId = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(13) > td > span > span");
+				var vnetInternalVnetIdText = vnetInternalVnetId.text();
+
+				var targetHighlighter= [
+					vnetNamevalue,
+					vnetInternalVnetId,
+				];
+
+				updateCustomerInfoHash = {
+					"vnet_name": vnetNamevalueText,
+					"vnet_internal_vnet_id": vnetInternalVnetIdText,
+				};
+
+				$.each(targetHighlighter, function(index, value) {
+					$(value).addClass('bg_highlighter');
+				});
+
+				setTimeout(function(){
+					_clearHighlighter(targetHighlighter);
+				}, 2000);
+			break;
+
+			case 'Microsoft.ClassicNetwork/virtualNetworks':
 				var vnetNamevalue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
 				var vnetNamevalueText = vnetNamevalue.text();
-				var vnetInternalVnetId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(13) > td > span > span");
+				var vnetInternalVnetId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(7) > td > span > span");
 				var vnetInternalVnetIdText = vnetInternalVnetId.text();
 
 				var targetHighlighter= [
@@ -355,6 +413,35 @@ function _ascResourceWather(){
 				var vnetgwGatewayid = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(4) > td > span > span");
 				var vnetgwGatewayidText = vnetgwGatewayid.text();
 				var vnetgwGatewayDeploymentId = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(13) > td > span > span");
+				var vnetgwGatewayDeploymentIdText = vnetgwGatewayDeploymentId.text();
+
+				var targetHighlighter= [
+					vnetgwNamevalue,
+					vnetgwGatewayid,
+					vnetgwGatewayDeploymentId,
+				];
+				
+				updateCustomerInfoHash = {
+					"vnetgw_name": vnetgwNamevalueText,
+					"vnetgw_gatewayid": vnetgwGatewayidText,
+					"vnetgw_gateway-deployment-id": vnetgwGatewayDeploymentIdText,
+				};
+
+				$.each(targetHighlighter, function(index, value) {
+					$(value).addClass('bg_highlighter');
+				});
+
+				setTimeout(function(){
+					_clearHighlighter(targetHighlighter);
+				}, 2000);
+			break;
+
+			case 'Microsoft.ClassicNetwork/virtualNetworkGateways':
+				var vnetgwNamevalue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(1) > td > span > span");
+				var vnetgwNamevalueText = vnetgwNamevalue.text();
+				var vnetgwGatewayid = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(6) > td > span > span");
+				var vnetgwGatewayidText = vnetgwGatewayid.text();
+				var vnetgwGatewayDeploymentId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(5) > td > span > span");
 				var vnetgwGatewayDeploymentIdText = vnetgwGatewayDeploymentId.text();
 
 				var targetHighlighter= [
@@ -418,12 +505,22 @@ function _ascResourceWather(){
 			break;
 
 			case 'Microsoft.Network/loadBalancers':
-				var lbNameValue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
-				var lbNameValueText = lbNameValue.text();
-				var lbRegion = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(3) > td > span > span");
-				var lbRegionText = lbRegion.text();
-				var lbResourceGroup = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(4) > td > span > span");
-				var lbResourceGroupText = lbResourceGroup.text();
+				var subTitleName = $(tileMarkIdWatcher + " > li > div > div.box-header > span").text();
+				if (subTitleName == "Properties") {
+					var lbNameValue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
+					var lbNameValueText = lbNameValue.text();
+					var lbRegion = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(3) > td > span > span");
+					var lbRegionText = lbRegion.text();
+					var lbResourceGroup = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(4) > td > span > span");
+					var lbResourceGroupText = lbResourceGroup.text();
+				} else {
+					var lbNameValue = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
+					var lbNameValueText = lbNameValue.text();
+					var lbRegion = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(3) > td > span > span");
+					var lbRegionText = lbRegion.text();
+					var lbResourceGroup = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(4) > td > span > span");
+					var lbResourceGroupText = lbResourceGroup.text();
+				}
 
 				var targetHighlighter= [
 					lbNameValue,
@@ -509,7 +606,7 @@ function _ascTileMarkerWather(){
 	var insertIcon = '<i style="display:none;" class="fa fa-check-circle-o tile_marker_icon" aria-hidden="true"></i>';
 	var targetElement = '#Anchor_';
 
-	for (i = 0; i <100; i++){
+	for (i = 0; i < 100; i++){
 		targetElementAdd = targetElement + i;
 
 		if (!$(targetElementAdd).prev().hasClass('tile_marker_icon')) {
