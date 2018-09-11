@@ -1,7 +1,7 @@
 {
   "name": "MsWorkHelper",
   "author": "Takefumi Yamasaki",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "manifest_version": 2,
   "description": "Helper for Microsoft Worker",
   "content_scripts": [
@@ -35,6 +35,21 @@
       ],
       "css": [
         "css/azure_portal.css"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://servicedesk.microsoft.com/*"
+      ],
+      "js": [
+        "vendor/jquery/jquery-3.2.1.min.js",
+        "vendor/judge_support_browser.js",
+        "js/service_desk.js"
+        // "js/service_desk.min.js"
+      ],
+      "css": [
+        "css/service_desk.css"
       ],
       "run_at": "document_idle"
     }
