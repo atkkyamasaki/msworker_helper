@@ -61,7 +61,7 @@ function _forMail(){
 
 function _getAfterLoadForMail(){
     elementCc = $("#content > div > ce-email > div > email-content > email-header > div > address-field:nth-child(2) > div > address-list > div > address-search > input");
-    elementTitle = $("#content > div > ce-email > div > case-header > div > mc-case-basic-info > div > div > div.section-1 > div.row-2 > div > div.value.block-with-text.bg-color > span");
+    elementTitle = $("#content > div > ce-email > div > case-header > div > mc-case-basic-info-email > div > div > div.section-1 > div.row-2 > div > div.value.block-with-text.bg-color > span");
 
     $('#post_it_input_title').val(elementTitle.text());
 
