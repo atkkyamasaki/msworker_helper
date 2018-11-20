@@ -60,12 +60,20 @@ function _forMail(){
 }
 
 function _getAfterLoadForMail(){
+    elementSrNum = $("#content > div > ce-email > div > case-header > div > mc-case-basic-info-email > div > div > div.section-1 > div.row-1 > div:nth-child(1) > div.value > span");
     elementCc = $("#content > div > ce-email > div > email-content > email-header > div > address-field:nth-child(2) > div > address-list > div > address-search > input");
     elementTitle = $("#content > div > ce-email > div > case-header > div > mc-case-basic-info-email > div > div > div.section-1 > div.row-2 > div > div.value.block-with-text.bg-color > span");
+    newTitle = '[REG:' + elementSrNum.text() + '] ' + elementTitle.text();
 
-    $('#post_it_input_title').val(elementTitle.text());
+    $('#post_it_input_title').val(newTitle);
 
 }
+
+// https://www.tam-tam.co.jp/tipsnote/javascript/post12323.html
+// function _checkMailValidWatcher(){
+//     subject = $("#content > div > ce-email > div > email-content > email-header > div > div > input") 
+
+// }
 
 
 
