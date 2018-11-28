@@ -13,6 +13,8 @@ $(function() {
         _forMail();
     } else if (url.match(/customer\/commercial/) || url.match(/customer\/case/)) {
         _forCase();
+    } else if (url.match(/home/)) {
+        _forHome();
     } else {
 
     }
@@ -167,7 +169,7 @@ function _validateForCase(){
     assignedTo = $("sd-label[data-automation-id='AssignedTo_Value']");
     caseStatus = $('#content > div > ui-view > case-integrated-layout > div > div.head-bar.bg-color > mc-case-basic-info > div > div > div.section-2 > div.status > sd-select > div > a');
     labor = $('#mc-case-section > div > sd-tile-layout > div > div > div:nth-child(7) > mc-case-labor-list > div > div:nth-child(2) > sd-progress > div > div, #mc-case-section > div > sd-tile-layout > div > div:nth-child(1) > div:nth-child(4) > mc-case-labor-list > div > div:nth-child(2) > sd-progress > div > div');
-    task = $('#mc-case-section > div > sd-tile-layout > div > div > div:nth-child(5) > mc-case-tasks > div > div:nth-child(2) > div > span, #mc-case-section > div > sd-tile-layout > div > div:nth-child(1) > div:nth-child(3) > mc-case-tasks > div > div:nth-child(2) > div > span');
+    task = $('#mc-case-section > div > sd-tile-layout > div > div:nth-child(1) > div:nth-child(3) > mc-case-tasks > div > div:nth-child(2) > sd-progress > div > div > span, #mc-case-section > div > sd-tile-layout > div > div > div:nth-child(5) > mc-case-tasks > div > div:nth-child(2) > sd-progress > div > div > span, #mc-case-section > div > sd-tile-layout > div > div > div:nth-child(5) > mc-case-tasks > div > div:nth-child(2) > div > span, #mc-case-section > div > sd-tile-layout > div > div:nth-child(1) > div:nth-child(3) > mc-case-tasks > div > div:nth-child(2) > div > span');
 
     validateList = [
         {'element': assignedTo , 'validation': 'Unassigned'},
@@ -200,7 +202,77 @@ function _validateForCase(){
 
 }
 
+function _forHome(){
+    setInterval(function(){
+        var url = location.href;
+        if (url.match(/mycases\/viewAllTasks/)) {
+            console.log('test1');
+            if (!($('#summary_note').length)) {
+                console.log('test2');
+                _forViewAllTask();
+            }
+        } else if (url.match(/home/)) {
+            if ($('#summary_note').length) {
+                $('#summary_note').remove();
+                $('.all_loading').remove();
+            }            
+        }
+    }, 2000);
+}
 
+function _forViewAllTask(){
+
+    $('body').css('overflow-y', 'visible');
+
+    var summaryNote = '<div id="summary_note" class="post_it">[Function for viewAllTasks]   ' +
+        '<p class="post_it_item">Filter (State) : </p>' +
+        '<p class="post_it_item"><input type="checkbox" name="my_task_state_filter" class="my_task_state_filter" value="Completed">Completed</p>' +
+        '<p class="post_it_item"><input type="checkbox" name="my_task_state_filter" class="my_task_state_filter" value="Cancelled">Cancelled</p>' +
+        '<p class="post_it_item"><input type="checkbox" name="my_task_state_filter" class="my_task_state_filter" value="Open" checked>Open</p>' +
+        '<p class="post_it_item"><i id="my_task_state_filter_submit" class="fa fa-play-circle" aria-hidden="true"></i><p>'
+        '</div>';
+
+    var loadingField = '<div class="all_loading hide"></div>';
+
+	if (true) {
+		$('body').after(summaryNote);	
+        $('body').after(loadingField);        
+    }
+    
+    $('#my_task_state_filter_submit').on("click", function () {
+        $('.all_loading').removeClass('hide');
+
+        var filterVal = $('[name="my_task_state_filter"]:checked').map(function(){
+            return $(this).val();
+        }).get();
+
+        taskLength = $('#content > div > div > mc-view-tasks > div > div > div > div > table > tbody > tr').length;    
+        for (var i = 2; i < taskLength; i = i + 3) {
+            taskState = '#content > div > div > mc-view-tasks > div > div > div > div > table > tbody > tr:nth-child(' + i + ') > td:nth-child(5) > span';
+            elementTaskState = $(taskState);    
+            elementTaskState.parents('tr').css('display', 'table-row');
+            elementTaskState.parents('tr').next('tr').css('display', 'table-row');
+            elementTaskState.parents('tr').next('tr').next('tr').css('display', 'table-row');
+        }
+
+        for (var i = 2; i < taskLength; i = i + 3) {
+            taskState = '#content > div > div > mc-view-tasks > div > div > div > div > table > tbody > tr:nth-child(' + i + ') > td:nth-child(5) > span';
+            elementTaskState = $(taskState);
+    
+            if ($.inArray(elementTaskState.text(), filterVal) < 0) {
+                elementTaskState.parents('tr').css('display', 'none');
+                elementTaskState.parents('tr').next('tr').css('display', 'none');
+                elementTaskState.parents('tr').next('tr').next('tr').css('display', 'none');
+            }
+        }
+        setTimeout(function(){
+            $('.all_loading').addClass('hide');
+        },500);
+    });
+
+
+
+}
 
 
 

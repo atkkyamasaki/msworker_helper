@@ -111,6 +111,18 @@
     right: 12px;
 }
 
+.my_task_state_filter {
+    margin-left: 8px;
+    appearance: checkbox;
+    -webkit-appearance: checkbox;
+}
+
+#my_task_state_filter_submit {
+    font-size: 1.5em;
+    &:hover {
+        color: black;
+    }
+}
 
 /* Copy Update Btn */
 
