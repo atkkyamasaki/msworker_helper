@@ -1,13 +1,14 @@
 {
   "name": "MsWorkHelper",
   "author": "Takefumi Yamasaki",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "manifest_version": 2,
   "description": "Helper for Microsoft Worker",
   "content_scripts": [
     {
       "matches": [
         "https://azuresupportcenter.msftcloudes.com/*",
+        "https://azuresupportcenterppe.msftcloudes.com/*",
         "https://jarvis-west.dc.ad.msft.net/*"
       ],
       "js": [

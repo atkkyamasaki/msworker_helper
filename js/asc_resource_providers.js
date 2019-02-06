@@ -29,6 +29,11 @@ $(function() {
 			'<p class="post_it_item">Deployment ID (Tenant Name) : </p>' +
 			'<p class="post_it_item"><input type="text" name="vm_deployment-id" size="40" maxlength="40">' + clipHtml + '</p>' +
 			'<p class="post_it_item">Region : <input type="text" name="vm_region" size="15" maxlength="40">' + clipHtml + '</p>' +
+			'<p class="post_it_item">Cluster : <input type="text" name="vm_cluster" size="15" maxlength="40">' + clipHtml + '</p>' +
+			'<p class="post_it_item">Node ID : </p>' +
+			'<p class="post_it_item"><input type="text" name="vm_node-id" size="40" maxlength="40">' + clipHtml + '</p>' +
+			'<p class="post_it_item">Container ID : </p>' +
+			'<p class="post_it_item"><input type="text" name="vm_container-id" size="40" maxlength="40">' + clipHtml + '</p>' +
 			'</div>' +
 			'</div>' +		
 		
@@ -177,6 +182,9 @@ $(function() {
 			$('input[name="vm_resource-group"]').val(),
 			$('input[name="vm_deployment-id"]').val(),
 			$('input[name="vm_region"]').val(),
+			$('input[name="vm_cluster"]').val(),
+			$('input[name="vm_node-id"]').val(),
+			$('input[name="vm_container-id"]').val(),
 			$('input[name="vnet_name"]').val(),
 			$('input[name="vnet_internal_vnet_id"]').val(),
 			$('input[name="vnetgw_name"]').val(),
@@ -218,28 +226,31 @@ $(function() {
 			$('input[name="vm_resource-group"]').val(importArray[2]),
 			$('input[name="vm_deployment-id"]').val(importArray[3]),
 			$('input[name="vm_region"]').val(importArray[4]),
-			$('input[name="vnet_name"]').val(importArray[5]),
-			$('input[name="vnet_internal_vnet_id"]').val(importArray[6]),
-			$('input[name="vnetgw_name"]').val(importArray[7]),
-			$('input[name="vnetgw_gatewayid"]').val(importArray[8]),
-			$('input[name="vnetgw_gateway-deployment-id"]').val(importArray[9]),
-			$('input[name="er_name"]').val(importArray[10]),
-			$('input[name="er_service_key"]').val(importArray[11]),
-			$('input[name="er_primary_device"]').val(importArray[12]),
-			$('input[name="er_secondary_device"]').val(importArray[13]),
-			$('input[name="er_primary_vrf_name"]').val(importArray[14]),
-			$('input[name="er_secondary_vrf_name"]').val(importArray[15]),
-			$('input[name="tor_node_id_0"]').val(importArray[16]),
-			$('input[name="tor_node_id_1"]').val(importArray[17]),
-			$('input[name="lb_name"]').val(importArray[18]),
-			$('input[name="lb_region"]').val(importArray[19]),
-			$('input[name="lb_resource-group"]').val(importArray[20]),
-			$('input[name="appgw_name"]').val(importArray[21]),
-			$('input[name="appgw_region"]').val(importArray[22]),
-			$('input[name="appgw_resource-group"]').val(importArray[23]),
-			$('input[name="appgw_deployment-id"]').val(importArray[24]),
-			$('input[name="appgw_gateway-id"]').val(importArray[25]),
-			$('input[name="appgw_gateway-subscription-id"]').val(importArray[26]),
+			$('input[name="vm_cluster"]').val(importArray[5]),
+			$('input[name="vm_node-id"]').val(importArray[6]),
+			$('input[name="vm_container-id"]').val(importArray[7]),
+			$('input[name="vnet_name"]').val(importArray[8]),
+			$('input[name="vnet_internal_vnet_id"]').val(importArray[9]),
+			$('input[name="vnetgw_name"]').val(importArray[10]),
+			$('input[name="vnetgw_gatewayid"]').val(importArray[11]),
+			$('input[name="vnetgw_gateway-deployment-id"]').val(importArray[12]),
+			$('input[name="er_name"]').val(importArray[13]),
+			$('input[name="er_service_key"]').val(importArray[14]),
+			$('input[name="er_primary_device"]').val(importArray[15]),
+			$('input[name="er_secondary_device"]').val(importArray[16]),
+			$('input[name="er_primary_vrf_name"]').val(importArray[17]),
+			$('input[name="er_secondary_vrf_name"]').val(importArray[18]),
+			$('input[name="tor_node_id_0"]').val(importArray[19]),
+			$('input[name="tor_node_id_1"]').val(importArray[20]),
+			$('input[name="lb_name"]').val(importArray[21]),
+			$('input[name="lb_region"]').val(importArray[22]),
+			$('input[name="lb_resource-group"]').val(importArray[23]),
+			$('input[name="appgw_name"]').val(importArray[24]),
+			$('input[name="appgw_region"]').val(importArray[25]),
+			$('input[name="appgw_resource-group"]').val(importArray[26]),
+			$('input[name="appgw_deployment-id"]').val(importArray[27]),
+			$('input[name="appgw_gateway-id"]').val(importArray[28]),
+			$('input[name="appgw_gateway-subscription-id"]').val(importArray[29]),
 
 			// $('.all_loading').removeClass('hide');
 			// $('.all_loading').addClass('hide');
@@ -265,7 +276,11 @@ $(function() {
 	$(document).on("click", ".tile_marker_icon", function () {
 		tileMarkId = $(this).next().attr('id');
 		$(".tile_marker_icon").removeClass('valid_green');
+		$(".tile_marker_icon").removeClass('fa-toggle-off');
+		$(".tile_marker_icon").removeClass('fa-toggle-on');
+		$(".tile_marker_icon").addClass('fa-toggle-off');
 		$(this).addClass('valid_green');
+		$(this).addClass('fa-toggle-on');
 	});
 
 	_ascResourceWather();
@@ -281,6 +296,7 @@ function _ascResourceWather(){
 		// console.log(tileMarkId);
 		var tileMarkIdWatcher = '#' + tileMarkId;
 		var tileMarkIdWatcherPlusOne = tileMarkIdWatcher.slice(0, -1) + String(Number(tileMarkIdWatcher.substr(-1)) + 1); 
+		var tileMarkIdWatcherPlusTwo = tileMarkIdWatcher.slice(0, -1) + String(Number(tileMarkIdWatcher.substr(-1)) + 2); 
 
 	var resourceProvider = $("label[for='resourceTreeGroup2']").text();
 	// console.log(resourceProvider);
@@ -300,12 +316,21 @@ function _ascResourceWather(){
 				var vmDeploymentIdText = vmDeploymentId.text();
 				var vmRegion = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(8) > td > span > span");
 				var vmRegionText = vmRegion.text();
+				var vmCluster = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(4) > td > span > a");
+				var vmClusterText = vmCluster.text();
+				var vmNodeId = $(tileMarkIdWatcherPlusTwo + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(1) > td > span > span");
+				var vmNodeIdText = vmNodeId.text();
+				var vmContainerId = $(tileMarkIdWatcherPlusTwo + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
+				var vmContainerIdText = vmContainerId.text();
 
 				var targetHighlighter= [
 					vmNamevalue,
 					vmResourceGroup,
 					vmDeploymentId,
 					vmRegion,
+					vmCluster,
+					vmNodeId,
+					vmContainerId,
 				];
 
 				updateCustomerInfoHash = {
@@ -313,6 +338,9 @@ function _ascResourceWather(){
 					"vm_resource-group": vmResourceGroupText,
 					"vm_deployment-id": vmDeploymentIdText,
 					"vm_region": vmRegionText,
+					"vm_cluster": vmClusterText,
+					"vm_node-id": vmNodeIdText,
+					"vm_container-id": vmContainerIdText,
 				};
 
 				$.each(targetHighlighter, function(index, value) {
@@ -358,9 +386,9 @@ function _ascResourceWather(){
 			break;
 
 			case 'Microsoft.Network/virtualNetworks':
-				var vnetNamevalue = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
+				var vnetNamevalue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
 				var vnetNamevalueText = vnetNamevalue.text();
-				var vnetInternalVnetId = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(13) > td > span > span");
+				var vnetInternalVnetId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(13) > td > span > span");
 				var vnetInternalVnetIdText = vnetInternalVnetId.text();
 
 				var targetHighlighter= [
@@ -466,17 +494,17 @@ function _ascResourceWather(){
 			break;
 
 			case 'Microsoft.Network/expressRouteCircuits':
-				var erNamevalue = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
+				var erNamevalue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
 				var erNamevalueText = erNamevalue.text();
-				var erServiceKey = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(14) > td > span > span");
+				var erServiceKey = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(14) > td > span > span");
 				var erServiceKeyText = erServiceKey.text();
-				var erPrimaryDevice = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(15) > td > span > span");
+				var erPrimaryDevice = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(15) > td > span > span");
 				var erPrimaryDeviceText = erPrimaryDevice.text();
-				var erSecondaryDevice = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(16) > td > span > span");
+				var erSecondaryDevice = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(16) > td > span > span");
 				var erSecondaryDeviceText = erSecondaryDevice.text();
-				// var erPrimaryVrfName = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
+				// var erPrimaryVrfName = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
 				// var erPrimaryVrfNameText = erPrimaryVrfName.text();
-				// var erSecondaryVrfName = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
+				// var erSecondaryVrfName = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
 				// var erSecondaryVrfNameText = erSecondaryVrfName.text();
 
 				var targetHighlighter= [
@@ -505,22 +533,12 @@ function _ascResourceWather(){
 			break;
 
 			case 'Microsoft.Network/loadBalancers':
-				var subTitleName = $(tileMarkIdWatcher + " > li > div > div.box-header > span").text();
-				if (subTitleName == "Properties") {
-					var lbNameValue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
-					var lbNameValueText = lbNameValue.text();
-					var lbRegion = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(3) > td > span > span");
-					var lbRegionText = lbRegion.text();
-					var lbResourceGroup = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(4) > td > span > span");
-					var lbResourceGroupText = lbResourceGroup.text();
-				} else {
-					var lbNameValue = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
-					var lbNameValueText = lbNameValue.text();
-					var lbRegion = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(3) > td > span > span");
-					var lbRegionText = lbRegion.text();
-					var lbResourceGroup = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(4) > td > span > span");
-					var lbResourceGroupText = lbResourceGroup.text();
-				}
+				var lbNameValue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
+				var lbNameValueText = lbNameValue.text();
+				var lbRegion = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(3) > td > span > span");
+				var lbRegionText = lbRegion.text();
+				var lbResourceGroup = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(4) > td > span > span");
+				var lbResourceGroupText = lbResourceGroup.text();
 
 				var targetHighlighter= [
 					lbNameValue,
@@ -544,17 +562,17 @@ function _ascResourceWather(){
 			break;
 
 			case 'Microsoft.Network/applicationGateways':
-				var appgwNameValue = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
+				var appgwNameValue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
 				var appgwNameValueText = appgwNameValue.text();
-				var appgwRegion = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(3) > td > span > span");
+				var appgwRegion = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(3) > td > span > span");
 				var appgwRegionText = appgwRegion.text();
-				var appgwResourceGroup = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(4) > td > span > span");
+				var appgwResourceGroup = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(4) > td > span > span");
 				var appgwResourceGroupText = appgwResourceGroup.text();
-				var appgwDeploymentId = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(16) > td > span > span");
+				var appgwDeploymentId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(16) > td > span > span");
 				var appgwDeploymentIdText = appgwDeploymentId.text();
-				var appgwGatewayId = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(22) > td > span > span");
+				var appgwGatewayId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(22) > td > span > span");
 				var appgwGatewayIdText = appgwGatewayId.text();
-				var appgwGatewaySubscriptionId = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(23) > td > span > span");
+				var appgwGatewaySubscriptionId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(23) > td > span > span");
 				var appgwGatewaySubscriptionIdText = appgwGatewaySubscriptionId.text();
 
 				var targetHighlighter= [
@@ -603,7 +621,8 @@ function _ascResourceWather(){
 // ASC Tile Marker Wather
 function _ascTileMarkerWather(){
 
-	var insertIcon = '<i style="display:none;" class="fa fa-check-circle-o tile_marker_icon" aria-hidden="true"></i>';
+	// var insertIcon = '<i style="display:none;" class="fa fa-check-circle-o tile_marker_icon" aria-hidden="true"></i>';
+	var insertIcon = '<i style="cursor: pointer; padding: 4px; font-size: 30px;" class="fa fa-toggle-off tile_marker_icon" aria-hidden="true"></i>';
 	var targetElement = '#Anchor_';
 
 	for (i = 0; i < 100; i++){

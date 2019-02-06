@@ -88,14 +88,19 @@ function _forCase(){
     var clipHtml = '<i class="fa fa-files-o my_clip_board" aria-hidden="true"></i>';
 
 	var summaryNote = '<div id="summary_note" class="post_it">[Function for Case]' +
-        '<p class="post_it_item"><i id="clip_date" class="fa fa-clock-o fa-lg icon_clip_board" aria-hidden="true"></i>' +
-            '<i id="clip_asc" class="fa fa-commenting fa-lg icon_clip_board" aria-hidden="true"></i>' +
-            '<i id="clip_tell" class="fa fa-volume-control-phone fa-lg icon_clip_board" aria-hidden="true"></i>' +
-            '<i id="clip_mail" class="fa fa-envelope-open-o fa-lg icon_clip_board" aria-hidden="true"></i>' +
-            '<i id="clip_close" class="fa fa-check-circle fa-lg icon_clip_board" aria-hidden="true"></i></p>' +
+        '<p class="post_it_item"><i id="clip_date" class="fa fa-clock-o fa-lg icon_clip_board" aria-hidden="true" title="now_time"></i>' +
+            '<i id="clip_asc" class="fa fa-commenting fa-lg icon_clip_board" aria-hidden="true" title="asc_check"></i>' +
+            '<i id="clip_fqr" class="fa fa-heart-o fa-lg icon_clip_board" aria-hidden="true" title="fqr"></i>' +
+            '<i id="clip_tell" class="fa fa-volume-control-phone fa-lg icon_clip_board" aria-hidden="true" title="tell"></i>' +
+            '<i id="clip_mail" class="fa fa-envelope-open-o fa-lg icon_clip_board" aria-hidden="true" title="call"></i>' +
+            '<i id="clip_close" class="fa fa-check-circle fa-lg icon_clip_board" aria-hidden="true" title="close"></i></p>' +
         '<p class="post_it_item">Status Update : </p>' +
-        '<p class="post_it_item"><input type="text" name="my_subscription" size="20" maxlength="40" value="- Status Update">' + clipHtml + '</p>' +
-		'</div>';
+        '<p class="post_it_item"><input type="text" size="20" maxlength="40" value="- Status update">' + clipHtml + '</p>' +
+        '<p class="post_it_item">NextC Update : </p>' +
+        '<p class="post_it_item"><input type="text" size="20" maxlength="40" value="- Next contact update">' + clipHtml + '</p>' +
+        '<p class="post_it_item">Close check : </p>' +
+        '<p class="post_it_item"><input type="text" size="20" maxlength="40" value="- Asked close check">' + clipHtml + '</p>' +
+        '</div>';
 	
 	var loadingField = '<div class="all_loading hide"></div>';
 
@@ -144,6 +149,21 @@ function _forCase(){
         _copyTextToClipboard(result);
 	});
 
+    // ASC
+	$("#clip_fqr").on("click", function () {
+        result = `- FQR OK
+1. FQR Achieved? (True/False) T
+2. If false, what was the FQR missed reason: 
+  A: Tools (like ASC) did not provide the quick insights on this break/fix situation (Break/fix ケースであったが ASC の insights などのツールから早期に回答が得られなかった)
+  B: The cx asked design related advisory but it was not publicly documented (仕様確認が来たが公開情報には記載されていなかった)
+  C: Needs PG escalation (PG エスカレーションが必要)
+  D: The engineer did not have enough time since he/she was on another urgent case (他の緊急な案件があり、本件に時間が割けなかった)
+  E: The case stayed long in the queue, and the engineer took the case ownership at the last minute (アサインが遅く、SLA を優先せざるを得なかった)
+  F: Other (その他、フリーコメント) `;
+        _copyTextToClipboard(result);
+	});
+
+
     // TELL
 	$("#clip_tell").on("click", function () {
         result = '- Tell to customer';
@@ -166,7 +186,7 @@ function _forCase(){
 function _validateForCase(){
     // errorMsg = '<div class="validate_warning"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>';
 
-    assignedTo = $("sd-label[data-automation-id='AssignedTo_Value']");
+    assignedTo = $("#mc-case-section > div > sd-tile-layout > div > div:nth-child(1) > div:nth-child(1) > mc-azure-case-details > div > div:nth-child(2) > azure-case-details > div > div:nth-child(1) > div.field-value > div > div:nth-child(1) > span, sd-label[data-automation-id='AssignedTo_Value']");
     caseStatus = $('#content > div > ui-view > case-integrated-layout > div > div.head-bar.bg-color > mc-case-basic-info > div > div > div.section-2 > div.status > sd-select > div > a');
     labor = $('#mc-case-section > div > sd-tile-layout > div > div > div:nth-child(7) > mc-case-labor-list > div > div:nth-child(2) > sd-progress > div > div, #mc-case-section > div > sd-tile-layout > div > div:nth-child(1) > div:nth-child(4) > mc-case-labor-list > div > div:nth-child(2) > sd-progress > div > div');
     task = $('#mc-case-section > div > sd-tile-layout > div > div:nth-child(1) > div:nth-child(3) > mc-case-tasks > div > div:nth-child(2) > sd-progress > div > div > span, #mc-case-section > div > sd-tile-layout > div > div > div:nth-child(5) > mc-case-tasks > div > div:nth-child(2) > sd-progress > div > div > span, #mc-case-section > div > sd-tile-layout > div > div > div:nth-child(5) > mc-case-tasks > div > div:nth-child(2) > div > span, #mc-case-section > div > sd-tile-layout > div > div:nth-child(1) > div:nth-child(3) > mc-case-tasks > div > div:nth-child(2) > div > span');
