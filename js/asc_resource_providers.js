@@ -308,19 +308,19 @@ function _ascResourceWather(){
 
 		switch(resourceSubtitle){
 			case 'Microsoft.Compute/virtualMachines':
-				var vmNamevalue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(1) > td > span > span");
+				var vmNamevalue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(1) > td > span > span");
 				var vmNamevalueText = vmNamevalue.text();
-				var vmResourceGroup = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
+				var vmResourceGroup = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
 				var vmResourceGroupText = vmResourceGroup.text();
-				var vmDeploymentId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(5) > td > span > span");
+				var vmDeploymentId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(5) > td > span > span");
 				var vmDeploymentIdText = vmDeploymentId.text();
-				var vmRegion = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(8) > td > span > span");
+				var vmRegion = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(8) > td > span > span");
 				var vmRegionText = vmRegion.text();
-				var vmCluster = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(4) > td > span > a");
+				var vmCluster = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(4) > td > span > a");
 				var vmClusterText = vmCluster.text();
-				var vmNodeId = $(tileMarkIdWatcherPlusTwo + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(1) > td > span > span");
+				var vmNodeId = $(tileMarkIdWatcherPlusTwo + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(1) > td > span > span");
 				var vmNodeIdText = vmNodeId.text();
-				var vmContainerId = $(tileMarkIdWatcherPlusTwo + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
+				var vmContainerId = $(tileMarkIdWatcherPlusTwo + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
 				var vmContainerIdText = vmContainerId.text();
 
 				var targetHighlighter= [
@@ -353,13 +353,13 @@ function _ascResourceWather(){
 			break;
 
 			case 'Microsoft.ClassicCompute/virtualMachines':
-				var vmNamevalue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(1) > td > span > span");
+				var vmNamevalue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(1) > td > span > span");
 				var vmNamevalueText = vmNamevalue.text();
-				var vmResourceGroup = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(3) > td > span > span");
+				var vmResourceGroup = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(3) > td > span > span");
 				var vmResourceGroupText = vmResourceGroup.text();
-				var vmDeploymentId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(6) > td > span > span");
+				var vmDeploymentId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(6) > td > span > span");
 				var vmDeploymentIdText = vmDeploymentId.text();
-				var vmRegion = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(4) > td > span > span");
+				var vmRegion = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(4) > td > span > span");
 				var vmRegionText = vmRegion.text();
 
 				var targetHighlighter= [
@@ -386,9 +386,9 @@ function _ascResourceWather(){
 			break;
 
 			case 'Microsoft.Network/virtualNetworks':
-				var vnetNamevalue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
+				var vnetNamevalue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
 				var vnetNamevalueText = vnetNamevalue.text();
-				var vnetInternalVnetId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(13) > td > span > span");
+				var vnetInternalVnetId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(13) > td > span > span");
 				var vnetInternalVnetIdText = vnetInternalVnetId.text();
 
 				var targetHighlighter= [
@@ -411,9 +411,9 @@ function _ascResourceWather(){
 			break;
 
 			case 'Microsoft.ClassicNetwork/virtualNetworks':
-				var vnetNamevalue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
+				var vnetNamevalue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
 				var vnetNamevalueText = vnetNamevalue.text();
-				var vnetInternalVnetId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(7) > td > span > span");
+				var vnetInternalVnetId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(7) > td > span > span");
 				var vnetInternalVnetIdText = vnetInternalVnetId.text();
 
 				var targetHighlighter= [
@@ -436,11 +436,11 @@ function _ascResourceWather(){
 			break;
 
 			case 'Microsoft.Network/virtualNetworkGateways':
-				var vnetgwNamevalue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
+				var vnetgwNamevalue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
 				var vnetgwNamevalueText = vnetgwNamevalue.text();
-				var vnetgwGatewayid = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(4) > td > span > span");
+				var vnetgwGatewayid = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(4) > td > span > span");
 				var vnetgwGatewayidText = vnetgwGatewayid.text();
-				var vnetgwGatewayDeploymentId = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(13) > td > span > span");
+				var vnetgwGatewayDeploymentId = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(13) > td > span > span");
 				var vnetgwGatewayDeploymentIdText = vnetgwGatewayDeploymentId.text();
 
 				var targetHighlighter= [
@@ -465,13 +465,12 @@ function _ascResourceWather(){
 			break;
 
 			case 'Microsoft.ClassicNetwork/virtualNetworkGateways':
-				var vnetgwNamevalue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(1) > td > span > span");
+				var vnetgwNamevalue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(1) > td > span > span");
 				var vnetgwNamevalueText = vnetgwNamevalue.text();
-				var vnetgwGatewayid = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(6) > td > span > span");
+				var vnetgwGatewayid = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(6) > td > span > span");
 				var vnetgwGatewayidText = vnetgwGatewayid.text();
-				var vnetgwGatewayDeploymentId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(5) > td > span > span");
+				var vnetgwGatewayDeploymentId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(5) > td > span > span");
 				var vnetgwGatewayDeploymentIdText = vnetgwGatewayDeploymentId.text();
-
 				var targetHighlighter= [
 					vnetgwNamevalue,
 					vnetgwGatewayid,
@@ -494,17 +493,17 @@ function _ascResourceWather(){
 			break;
 
 			case 'Microsoft.Network/expressRouteCircuits':
-				var erNamevalue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
+				var erNamevalue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
 				var erNamevalueText = erNamevalue.text();
-				var erServiceKey = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(14) > td > span > span");
+				var erServiceKey = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(14) > td > span > span");
 				var erServiceKeyText = erServiceKey.text();
-				var erPrimaryDevice = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(15) > td > span > span");
+				var erPrimaryDevice = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(15) > td > span > span");
 				var erPrimaryDeviceText = erPrimaryDevice.text();
-				var erSecondaryDevice = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(16) > td > span > span");
+				var erSecondaryDevice = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(16) > td > span > span");
 				var erSecondaryDeviceText = erSecondaryDevice.text();
-				// var erPrimaryVrfName = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
+				// var erPrimaryVrfName = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
 				// var erPrimaryVrfNameText = erPrimaryVrfName.text();
-				// var erSecondaryVrfName = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
+				// var erSecondaryVrfName = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
 				// var erSecondaryVrfNameText = erSecondaryVrfName.text();
 
 				var targetHighlighter= [
@@ -533,11 +532,11 @@ function _ascResourceWather(){
 			break;
 
 			case 'Microsoft.Network/loadBalancers':
-				var lbNameValue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
+				var lbNameValue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
 				var lbNameValueText = lbNameValue.text();
-				var lbRegion = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(3) > td > span > span");
+				var lbRegion = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(3) > td > span > span");
 				var lbRegionText = lbRegion.text();
-				var lbResourceGroup = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(4) > td > span > span");
+				var lbResourceGroup = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(4) > td > span > span");
 				var lbResourceGroupText = lbResourceGroup.text();
 
 				var targetHighlighter= [
@@ -562,17 +561,17 @@ function _ascResourceWather(){
 			break;
 
 			case 'Microsoft.Network/applicationGateways':
-				var appgwNameValue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
+				var appgwNameValue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
 				var appgwNameValueText = appgwNameValue.text();
-				var appgwRegion = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(3) > td > span > span");
+				var appgwRegion = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(3) > td > span > span");
 				var appgwRegionText = appgwRegion.text();
-				var appgwResourceGroup = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(4) > td > span > span");
+				var appgwResourceGroup = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(4) > td > span > span");
 				var appgwResourceGroupText = appgwResourceGroup.text();
-				var appgwDeploymentId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(16) > td > span > span");
+				var appgwDeploymentId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(16) > td > span > span");
 				var appgwDeploymentIdText = appgwDeploymentId.text();
-				var appgwGatewayId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(22) > td > span > span");
+				var appgwGatewayId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(22) > td > span > span");
 				var appgwGatewayIdText = appgwGatewayId.text();
-				var appgwGatewaySubscriptionId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > ng-transclude > layout-handler > div > table > tbody > tr:nth-child(23) > td > span > span");
+				var appgwGatewaySubscriptionId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(23) > td > span > span");
 				var appgwGatewaySubscriptionIdText = appgwGatewaySubscriptionId.text();
 
 				var targetHighlighter= [
