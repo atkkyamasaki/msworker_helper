@@ -175,6 +175,14 @@
     padding: 4px;    
 }
 
+/* Close Check */
+#close_check_btn {
+    // color: red;
+    cursor: pointer;
+    &:hover {
+        opacity: 0.8;
+    }    
+}
 
 /* Modal window */
 .container_import_field {

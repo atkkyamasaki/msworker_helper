@@ -1,4 +1,8 @@
 // 各要素の取得、変数の定義
+var sr_num
+var sr_title
+var sr_email
+var sr_contract
 
 // var updateCustomerInfoHash = {};
 // var tileMarkId = '';
@@ -100,6 +104,7 @@ function _forCase(){
         '<p class="post_it_item"><input type="text" size="20" maxlength="40" value="- Next contact update">' + clipHtml + '</p>' +
         '<p class="post_it_item">Close check : </p>' +
         '<p class="post_it_item"><input type="text" size="20" maxlength="40" value="- Asked close check">' + clipHtml + '</p>' +
+        '<p class="post_it_item">' + '<span id="close_check_btn"><i class="fa fa-check-square-o" aria-hidden="true"></i>Close Check </span>' + '</p>' +
         '</div>';
 	
 	var loadingField = '<div class="all_loading hide"></div>';
@@ -111,6 +116,7 @@ function _forCase(){
 
     setInterval(function(){
         _validateForCase();
+        _closeCheck();
     }, 2000);
 
     // Icon クリック時の動作
@@ -139,13 +145,13 @@ function _forCase(){
         format_str = format_str.replace(/mm/g, minute_str);
         format_str = format_str.replace(/ss/g, second_str);
         
-        result = '- ' + format_str;
+        result = '- ' + format_str + '\n';
         _copyTextToClipboard(result);
 	});
 
     // ASC
 	$("#clip_asc").on("click", function () {
-        result = '- ASC OK';
+        result = '- ASC OK\n';
         _copyTextToClipboard(result);
 	});
 
@@ -166,21 +172,27 @@ function _forCase(){
 
     // TELL
 	$("#clip_tell").on("click", function () {
-        result = '- Tell to customer';
+        result = '- Tell to customer\n';
         _copyTextToClipboard(result);
 	});
 
     // Mail
 	$("#clip_mail").on("click", function () {
-        result = '- Mail to customer';
+        result = '- Mail to customer\n';
         _copyTextToClipboard(result);
 	});
 
     // Mail
 	$("#clip_close").on("click", function () {
-        result = '- Close this SR';
+        result = '- Close this SR\n';
         _copyTextToClipboard(result);
 	});
+
+    // Close Check
+    $("#close_check_btn").on("click", function () {
+        window.open('http://khiraha10/?num=' + sr_num + '&title=' + sr_title + '&email=' + sr_email + '&contract=' + sr_contract);
+    });
+
 }
 
 function _validateForCase(){
@@ -220,6 +232,25 @@ function _validateForCase(){
     //     }
     // }
 
+}
+
+function _closeCheck(){
+    // Close Checker
+    element_sr_num = "#content > div > ui-view > case-integrated-layout > div > div.head-bar.bg-color > mc-case-basic-info > div > div > div.section-1 > div.row-1 > div:nth-child(1) > div.value > span";
+    element_sr_title = "#content > div > ui-view > case-integrated-layout > div > div.head-bar.bg-color > mc-case-basic-info > div > div > div.section-1 > div.row-2 > div > div.value.block-with-text.bg-color > span";
+    element_edit = "#content > div > ui-view > case-integrated-layout > div > div.head-bar.bg-color > mc-case-basic-info > div > div > div.section-2 > div:nth-child(4) > sd-button > button > div > span";
+    if($(element_edit).text() == "Edit") {
+        element_sr_email = "#mc-case-section > div > sd-tile-layout > div > div:nth-child(2) > div:nth-child(1) > mc-vl-case-contact > div > div.tile-content > sd-progress > div > sd-pivots > section > section:nth-child(2) > div > table > tbody > tr:nth-child(3) > td > div > table > tbody > tr > td:nth-child(3) > div > span";
+        element_sr_contract = "#mc-case-section > div > sd-tile-layout > div > div:nth-child(1) > div:nth-child(2) > case-entitlement > div > div.tile-content > sd-progress > div > div > div:nth-child(1) > div:nth-child(2) > div.field-value > sd-label";
+    } else {
+        element_sr_email = "#mc-case-section > div > sd-tile-layout > div > div:nth-child(2) > div:nth-child(1) > mc-vl-case-contact > div > div.tile-content > sd-progress > div > sd-pivots > section > section:nth-child(2) > div > table > tbody > tr:nth-child(3) > td > div > table > tbody > tr > td:nth-child(3) > div > sd-action-trigger > a > span";
+        element_sr_contract = "#mc-case-section > div > sd-tile-layout > div > div:nth-child(1) > div:nth-child(2) > case-entitlement > div > div.tile-content > sd-progress > div > div > div:nth-child(1) > div:nth-child(2) > div.field-value > sd-label";
+    }
+
+    sr_num = $(element_sr_num).text();
+    sr_title = $(element_sr_title).text();
+    sr_email = $(element_sr_email).text();
+    sr_contract = $(element_sr_contract).text();
 }
 
 function _forHome(){

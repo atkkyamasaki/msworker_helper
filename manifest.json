@@ -1,7 +1,7 @@
 {
   "name": "MsWorkHelper",
   "author": "Takefumi Yamasaki",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "manifest_version": 2,
   "description": "Helper for Microsoft Worker",
   "content_scripts": [
@@ -51,6 +51,20 @@
       ],
       "css": [
         "css/service_desk.css"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "http://khiraha10/*"
+      ],
+      "js": [
+        "vendor/jquery/jquery-3.2.1.min.js",
+        "js/khiraha10.js"
+        // "js/khiraha10.min.js"
+      ],
+      "css": [
+        "css/khiraha10.css"
       ],
       "run_at": "document_idle"
     }
