@@ -157,15 +157,7 @@ function _forCase(){
 
     // ASC
 	$("#clip_fqr").on("click", function () {
-        result = `- FQR OK
-1. FQR Achieved? (True/False) T
-2. If false, what was the FQR missed reason: 
-  A: Tools (like ASC) did not provide the quick insights on this break/fix situation (Break/fix ケースであったが ASC の insights などのツールから早期に回答が得られなかった)
-  B: The cx asked design related advisory but it was not publicly documented (仕様確認が来たが公開情報には記載されていなかった)
-  C: Needs PG escalation (PG エスカレーションが必要)
-  D: The engineer did not have enough time since he/she was on another urgent case (他の緊急な案件があり、本件に時間が割けなかった)
-  E: The case stayed long in the queue, and the engineer took the case ownership at the last minute (アサインが遅く、SLA を優先せざるを得なかった)
-  F: Other (その他、フリーコメント) `;
+        result = '- FQR OK\n1. FQR Achieved? (True/False) T\n2. If false, what was the FQR missed reason: \n  A: Tools (like ASC) did not provide the quick insights on this break/fix situation (Break/fix ケースであったが ASC の insights などのツールから早期に回答が得られなかった)\n  B: The cx asked design related advisory but it was not publicly documented (仕様確認が来たが公開情報には記載されていなかった)\n  C: Needs PG escalation (PG エスカレーションが必要)\n  D: The engineer did not have enough time since he/she was on another urgent case (他の緊急な案件があり、本件に時間が割けなかった)\n  E: The case stayed long in the queue, and the engineer took the case ownership at the last minute (アサインが遅く、SLA を優先せざるを得なかった)\n  F: Other (その他、フリーコメント)\n ';
         _copyTextToClipboard(result);
 	});
 
