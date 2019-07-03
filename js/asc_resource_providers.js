@@ -2,6 +2,7 @@
 
 var updateCustomerInfoHash = {};
 var tileMarkId = '';
+var analysisLinkArray = [];
 
 // 付箋
 $(function() {
@@ -281,10 +282,21 @@ $(function() {
 		$(".tile_marker_icon").addClass('fa-toggle-off');
 		$(this).addClass('valid_green');
 		$(this).addClass('fa-toggle-on');
+		$("#analysis_link").remove();
 	});
 
 	_ascResourceWather();
 	_ascTileMarkerWather();
+
+	// Analysis Link の実行
+	$(document).on("click", "#analysis_link", function () {
+		// window.open('https://jarvis-west.dc.ad.msft.net/dashboard/BrkProd/BrkGWT/VpnGateway/TenantGeneral?overrides=[{"query":"//*[id=\'DeploymentId\']","key":"value","replacement":"b899f564089d49a0b1b876dda3de10bf"}]%20');
+		// window.open('https://jarvis-west.dc.ad.msft.net/dashboard/share/E5FFE4A8?overrides=[{"query":"//dataSources","key":"account","replacement":"BrkProd"},{"query":"//*[id='DeploymentId']","key":"value","replacement":"b899f564089d49a0b1b876dda3de10bf"}]%20');
+		// window.open('https://jarvis-west.dc.ad.msft.net/?page=logs&be=DGrep&offset=-1&offsetUnit=Hours&UTC=false&ep=Diagnostics%20PROD&ns=BrkGWT&en=IkeLogsTable,IkePacketLogsTable&scopingConditions=[["Tenant","8ddc393ee54d44379d7448631b0a336b"]]&conditions=[]&clientQuery=orderby%20PreciseTimeStamp%20asc%0A&chartEditorVisible=true&chartType=Line&chartLayers=[["New%20Layer",""]]%20');
+		$.each(analysisLinkArray, function(index, value) {
+			window.open(value);
+		});	
+	});
 
 });
 
@@ -306,15 +318,17 @@ function _ascResourceWather(){
 		var resourceSubtitle = $(tileMarkIdWatcher).closest('loading-area').parent().closest('loading-area').prev('div').find(".resource-explorer-subtitle").text();
 		// console.log(resourceSubtitle);
 
+		var analysisLink = '<i id="analysis_link" class="fa fa-external-link" aria-hidden="true"></i>'
+
 		switch(resourceSubtitle){
 			case 'Microsoft.Compute/virtualMachines':
 				var vmNamevalue = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(1) > td > span > span");
 				var vmNamevalueText = vmNamevalue.text();
 				var vmResourceGroup = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
 				var vmResourceGroupText = vmResourceGroup.text();
-				var vmDeploymentId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(5) > td > span > span");
+				var vmDeploymentId = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(7) > td > span > span");
 				var vmDeploymentIdText = vmDeploymentId.text();
-				var vmRegion = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(8) > td > span > span");
+				var vmRegion = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(10) > td > span > span");
 				var vmRegionText = vmRegion.text();
 				var vmCluster = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(4) > td > span > a");
 				var vmClusterText = vmCluster.text();
@@ -361,12 +375,21 @@ function _ascResourceWather(){
 				var vmDeploymentIdText = vmDeploymentId.text();
 				var vmRegion = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(4) > td > span > span");
 				var vmRegionText = vmRegion.text();
+				var vmCluster = $(tileMarkIdWatcher + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(5) > td > span > span");
+				var vmClusterText = vmCluster.text();
+				var vmNodeId = $(tileMarkIdWatcherPlusTwo + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(1) > td > span > span");
+				var vmNodeIdText = vmNodeId.text();
+				var vmContainerId = $(tileMarkIdWatcherPlusTwo + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(2) > td > span > span");
+				var vmContainerIdText = vmContainerId.text();
 
 				var targetHighlighter= [
 					vmNamevalue,
 					vmResourceGroup,
 					vmDeploymentId,
 					vmRegion,
+					vmCluster,
+					vmNodeId,
+					vmContainerId,
 				];
 
 				updateCustomerInfoHash = {
@@ -374,6 +397,9 @@ function _ascResourceWather(){
 					"vm_resource-group": vmResourceGroupText,
 					"vm_deployment-id": vmDeploymentIdText,
 					"vm_region": vmRegionText,
+					"vm_cluster": vmClusterText,
+					"vm_node-id": vmNodeIdText,
+					"vm_container-id": vmContainerIdText,
 				};
 
 				$.each(targetHighlighter, function(index, value) {
@@ -442,6 +468,11 @@ function _ascResourceWather(){
 				var vnetgwGatewayidText = vnetgwGatewayid.text();
 				var vnetgwGatewayDeploymentId = $(tileMarkIdWatcherPlusOne + " > li > div > div.box-content > div > layout-handler > div > table > tbody > tr:nth-child(13) > td > span > span");
 				var vnetgwGatewayDeploymentIdText = vnetgwGatewayDeploymentId.text();
+
+				if(!$('#analysis_link').length){
+					vnetgwGatewayDeploymentId.append(analysisLink);
+					_createAnalysisLink(resourceSubtitle, tileMarkIdWatcher, vnetgwGatewayDeploymentIdText);
+				}
 
 				var targetHighlighter= [
 					vnetgwNamevalue,
@@ -645,6 +676,28 @@ function _clearHighlighter(elements){
 }
 
 
+// Analysis Link
+
+function _createAnalysisLink(resourceSubtitle, tileMark, id){
+		// window.open('https://jarvis-west.dc.ad.msft.net/dashboard/BrkProd/BrkGWT/VpnGateway/TenantGeneral?overrides=[{"query":"//*[id=\'DeploymentId\']","key":"value","replacement":"b899f564089d49a0b1b876dda3de10bf"}]%20');
+		// window.open('https://jarvis-west.dc.ad.msft.net/dashboard/share/E5FFE4A8?overrides=[{"query":"//dataSources","key":"account","replacement":"BrkProd"},{"query":"//*[id='DeploymentId']","key":"value","replacement":"b899f564089d49a0b1b876dda3de10bf"}]%20');
+		// window.open('https://jarvis-west.dc.ad.msft.net/?page=logs&be=DGrep&offset=-1&offsetUnit=Hours&UTC=false&ep=Diagnostics%20PROD&ns=BrkGWT&en=IkeLogsTable,IkePacketLogsTable&scopingConditions=[["Tenant","8ddc393ee54d44379d7448631b0a336b"]]&conditions=[]&clientQuery=orderby%20PreciseTimeStamp%20asc%0A&chartEditorVisible=true&chartType=Line&chartLayers=[["New%20Layer",""]]%20');
+
+		switch(resourceSubtitle){
+			case 'Microsoft.Compute/virtualMachines':
+			break;
+			case 'Microsoft.Network/virtualNetworkGateways':
+				analysisLinkArray = [
+					'https://jarvis-west.dc.ad.msft.net/dashboard/BrkProd/BrkGWT/VpnGateway/TenantGeneral?overrides=[{"query":"//*[id=\'DeploymentId\']","key":"value","replacement":"' + id + '"}]%20',
+					'https://jarvis-west.dc.ad.msft.net/dashboard/share/E5FFE4A8?overrides=[{"query":"//dataSources","key":"account","replacement":"BrkProd"},{"query":"//*[id=\'DeploymentId\']","key":"value","replacement":"' + id + '"}]%20',
+					'https://jarvis-west.dc.ad.msft.net/?page=logs&be=DGrep&offset=-1&offsetUnit=Hours&UTC=false&ep=Diagnostics%20PROD&ns=BrkGWT&en=IkeLogsTable,IkePacketLogsTable&scopingConditions=[["Tenant","' + id + '"]]&conditions=[]&clientQuery=orderby%20PreciseTimeStamp%20asc%0A&chartEditorVisible=true&chartType=Line&chartLayers=[["New%20Layer",""]]%20',
+				];
+
+			break;
+		};
+}
+
+
 
 // クリップボードへのコピー
 //   参考 URL
@@ -661,7 +714,7 @@ function _copyTextToClipboard(textVal){
 	var retVal = document.execCommand('copy');
 	bodyElm.removeChild(copyFrom);
 	return retVal;
-  }
+}
 
 
 

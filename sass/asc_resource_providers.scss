@@ -146,6 +146,17 @@
     color: limegreen;
 }
 
+/* Analysis Link Icon */
+
+#analysis_link {
+    margin: 0 4px;
+    color: red;
+
+    &:hover {
+        opacity: 0.6;
+        cursor: pointer;
+    }
+}
 
 /* Modal window */
 .container_import_field {
