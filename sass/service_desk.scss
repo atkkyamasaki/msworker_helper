@@ -82,10 +82,11 @@
     z-index: 1000;
 }
 
-#customer_info_note {
-    top: calc(30% + 128px);
+#summary_note2 {
+    top: calc(30% + 240px);
     background-color: rgba(255,153,204,0.7);
     border-left: 8px solid rgb(255,153,204);
+    z-index: 1001;
 }
 
 .conf_update_field,

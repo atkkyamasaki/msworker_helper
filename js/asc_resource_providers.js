@@ -679,9 +679,6 @@ function _clearHighlighter(elements){
 // Analysis Link
 
 function _createAnalysisLink(resourceSubtitle, tileMark, id){
-		// window.open('https://jarvis-west.dc.ad.msft.net/dashboard/BrkProd/BrkGWT/VpnGateway/TenantGeneral?overrides=[{"query":"//*[id=\'DeploymentId\']","key":"value","replacement":"b899f564089d49a0b1b876dda3de10bf"}]%20');
-		// window.open('https://jarvis-west.dc.ad.msft.net/dashboard/share/E5FFE4A8?overrides=[{"query":"//dataSources","key":"account","replacement":"BrkProd"},{"query":"//*[id='DeploymentId']","key":"value","replacement":"b899f564089d49a0b1b876dda3de10bf"}]%20');
-		// window.open('https://jarvis-west.dc.ad.msft.net/?page=logs&be=DGrep&offset=-1&offsetUnit=Hours&UTC=false&ep=Diagnostics%20PROD&ns=BrkGWT&en=IkeLogsTable,IkePacketLogsTable&scopingConditions=[["Tenant","8ddc393ee54d44379d7448631b0a336b"]]&conditions=[]&clientQuery=orderby%20PreciseTimeStamp%20asc%0A&chartEditorVisible=true&chartType=Line&chartLayers=[["New%20Layer",""]]%20');
 
 		switch(resourceSubtitle){
 			case 'Microsoft.Compute/virtualMachines':

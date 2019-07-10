@@ -14,9 +14,10 @@ $(function() {
     var url = location.href;
 
     if (url.match(/email/)) {
-        _forMail();
+        // _forMail();
     } else if (url.match(/customer\/commercial/) || url.match(/customer\/case/)) {
         _forCase();
+        _forMail();
     } else if (url.match(/home/)) {
         _forHome();
     } else {
@@ -27,7 +28,7 @@ $(function() {
 	$(document).on("dblclick", "#summary_note", function () {
 		$(this).toggleClass('post_it_close');
 	});
-	$(document).on("dblclick", "#customer_info_note", function () {
+	$(document).on("dblclick", "#summary_note2", function () {
 		$(this).toggleClass('post_it_close');
 	});
 
@@ -46,7 +47,7 @@ function _forMail(){
 
     var clipHtml = '<i class="fa fa-files-o my_clip_board" aria-hidden="true"></i>';
 
-	var summaryNote = '<div id="summary_note" class="post_it">[Function for EMAIL]' +
+	var summaryNote = '<div id="summary_note2" class="post_it">[Function for EMAIL]' +
 		'<p class="post_it_item">Japan Azure Support : </p>' +
 		'<p class="post_it_item"><input id="post_it_input_cc" type="text" name="cc" maxlength="40" value="jpazrst@microsoft.com">' + clipHtml + '</p>' +
 		'<p class="post_it_item">Title : </p>' +
@@ -66,9 +67,9 @@ function _forMail(){
 }
 
 function _getAfterLoadForMail(){
-    elementSrNum = $("#content > div > ce-email > div > case-header > div > mc-case-basic-info-email > div > div > div.section-1 > div.row-1 > div:nth-child(1) > div.value > span");
-    elementCc = $("#content > div > ce-email > div > email-content > email-header > div > address-field:nth-child(2) > div > address-list > div > address-search > input");
-    elementTitle = $("#content > div > ce-email > div > case-header > div > mc-case-basic-info-email > div > div > div.section-1 > div.row-2 > div > div.value.block-with-text.bg-color > span");
+    elementSrNum = $("#content > div > ui-view > case-integrated-layout > div > div.head-bar.bg-color > mc-case-basic-info > div > div > div.section-1 > div.row-1 > div:nth-child(1) > div.value > span");
+    // elementCc = $("#content > div > ce-email > div > email-content > email-header > div > address-field:nth-child(2) > div > address-list > div > address-search > input");
+    elementTitle = $("#content > div > ui-view > case-integrated-layout > div > div.head-bar.bg-color > mc-case-basic-info > div > div > div.section-1 > div.row-2 > div > div.value.block-with-text.bg-color > span");
     newTitle = '[REG:' + elementSrNum.text() + '] ' + elementTitle.text();
 
     $('#post_it_input_title').val(newTitle);
